@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build & UI Tests') {
+            steps {
+                sh 'mvn clean test'
+            }
+        }
+        stage('API Tests') {
+            steps {
+                sh 'newman run postman/Healthcare_API.postman_collection.json'
+            }
+        }
+    }
+}
